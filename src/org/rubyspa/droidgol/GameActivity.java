@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.util.Pair;
 import android.widget.TextView;
 
-public class Game extends Activity
+public class GameActivity extends Activity
 {
 
     private TextView boardView;
