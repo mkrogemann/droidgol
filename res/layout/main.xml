@@ -6,8 +6,8 @@
     >
 <TextView
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:text="Hello World, Game"
-    />
+    android:layout_height="fill_parent"
+    android:singleLine="false" android:focusableInTouchMode="true" android:id="@id/gameBoard" android:scrollbars="vertical"
+    android:typeface="monospace"/>
 </LinearLayout>
 
