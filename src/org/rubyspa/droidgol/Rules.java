@@ -1,7 +1,7 @@
 package org.rubyspa.droidgol;
 
 public class Rules {
-    public static boolean apply(int neighbors, boolean selfAlive) {
+    public static boolean apply(final int neighbors, final boolean selfAlive) {
         switch (neighbors) {
             case 3:
                 return true;
