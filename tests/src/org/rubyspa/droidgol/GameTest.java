@@ -41,4 +41,31 @@ public class GameTest extends TestCase {
         assertEquals(new Integer(4), game.neighbors(Pair.create(2, 1)));
     }
 
+    public void testEvolve() {
+        Map<Pair<Integer, Integer>, Boolean> state = new HashMap<Pair<Integer, Integer>, Boolean>();
+        state.put(Pair.create(1, 1), Boolean.TRUE);
+        state.put(Pair.create(3, 1), Boolean.TRUE);
+        state.put(Pair.create(2, 2), Boolean.TRUE);
+        state.put(Pair.create(4, 2), Boolean.TRUE);
+        state.put(Pair.create(2, 3), Boolean.TRUE);
+        state.put(Pair.create(4, 3), Boolean.TRUE);
+        Game game = new Game(4, 3, state);
+
+        Map<Pair<Integer, Integer>, Boolean> nextState = new HashMap<Pair<Integer, Integer>, Boolean>();
+        nextState.put(Pair.create(1, 1), Boolean.FALSE);
+        nextState.put(Pair.create(2, 1), Boolean.FALSE);
+        nextState.put(Pair.create(3, 1), Boolean.FALSE);
+        nextState.put(Pair.create(4, 1), Boolean.FALSE);
+        nextState.put(Pair.create(1, 2), Boolean.FALSE);
+        nextState.put(Pair.create(2, 2), Boolean.TRUE);
+        nextState.put(Pair.create(3, 2), Boolean.FALSE);
+        nextState.put(Pair.create(4, 2), Boolean.TRUE);
+        nextState.put(Pair.create(1, 3), Boolean.FALSE);
+        nextState.put(Pair.create(2, 3), Boolean.TRUE);
+        nextState.put(Pair.create(3, 3), Boolean.FALSE);
+        nextState.put(Pair.create(4, 3), Boolean.TRUE);
+
+        assertEquals(nextState, game.evolve());
+    }
+
 }

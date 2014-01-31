@@ -64,4 +64,12 @@ public class Game {
         if (stateAt(coordinates) == Boolean.TRUE) neighbors--;
         return neighbors;
     }
+
+    public Map<Pair<Integer, Integer>, Boolean> evolve() {
+        Map<Pair<Integer, Integer>, Boolean> nextState = new HashMap<Pair<Integer, Integer>, Boolean>();
+        for (Pair<Integer, Integer> coordinates : state.keySet()) {
+            nextState.put(coordinates, Rules.apply(neighbors(coordinates), stateAt(coordinates)));
+        }
+        return nextState;
+    }
 }
