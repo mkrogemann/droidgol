@@ -61,7 +61,7 @@ public class Game {
                 }
             }
         }
-        if (stateAt(coordinates)) neighbors--;
+        if (stateAt(coordinates) == Boolean.TRUE) neighbors--;
         return neighbors;
     }
 }
