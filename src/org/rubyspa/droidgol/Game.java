@@ -4,6 +4,7 @@ import android.util.Pair;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class Game {
 
@@ -12,11 +13,24 @@ public class Game {
 
     public Game(final Integer width, final Integer height) {
         this.dimensions = Pair.create(width, height);
+        this.state = randomState();
     }
 
     public Game(final Integer width, final Integer height, final Map state) {
         this(width, height);
         this.state = initializeState(state);
+    }
+
+    private Map<Pair<Integer, Integer>, Boolean> randomState() {
+        Map<Pair<Integer, Integer>, Boolean> randomState = new HashMap<Pair<Integer, Integer>, Boolean>();
+        final Integer width = dimensions.first;
+        final Integer height = dimensions.second;
+        for (int row = 1; row < height; row++) {
+            for (int column = 1; column < width; column++) {
+                randomState.put(Pair.create(column, row), new Random().nextBoolean());
+            }
+        }
+        return randomState;
     }
 
     private Map<Pair<Integer, Integer>, Boolean> initializeState(final Map<Pair<Integer, Integer>, Boolean> state) {
