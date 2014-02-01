@@ -17,7 +17,7 @@ public class Game {
     }
 
     public Game(final Integer width, final Integer height, final Map state) {
-        this(width, height);
+        this.dimensions = Pair.create(width, height);
         this.state = initializeState(state);
     }
 
