@@ -56,10 +56,6 @@ public class Game {
         return dimensions;
     }
 
-    public Map<Pair<Integer, Integer>, Boolean> currentState() {
-        return state;
-    }
-
     public boolean stateAt(Pair<Integer, Integer> coordinates) {
         return state.get(wrapAroundBorders(coordinates));
     }
@@ -92,5 +88,22 @@ public class Game {
         }
         this.state = Collections.unmodifiableMap(nextState);
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Game game = (Game) o;
+
+        if (!state.equals(game.state)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return state.hashCode();
     }
 }
