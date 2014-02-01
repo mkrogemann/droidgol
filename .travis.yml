@@ -1,7 +1,0 @@
-before_script:
-  - sudo wget -q http://dl.google.com/android/android-sdk_r22.3-linux.tgz
-  - sudo tar xzf android-sdk_r22.3-linux.tgz
-  - sudo android-sdk-linux/tools/android -s update sdk --filter android-19,platform-tool --no-ui
-  - sudo android-sdk-linux/tools/android -s update project --path . --target "android-19"
-  - sudo android-sdk-linux/tools/android -s update test-project --path ./tests -m .
-
