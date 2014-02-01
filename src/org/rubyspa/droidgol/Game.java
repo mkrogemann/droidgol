@@ -52,20 +52,13 @@ public class Game {
         return Collections.unmodifiableMap(newState);
     }
 
-    public Pair<Integer, Integer> dimensions() {
-        return dimensions;
-    }
-
-    public boolean stateAt(Pair<Integer, Integer> coordinates) {
-        return state.get(wrapAroundBorders(coordinates));
-    }
-
-    private Pair<Integer, Integer> wrapAroundBorders(Pair<Integer, Integer> unwrapped) {
-        int x_wrapped = unwrapped.first < 1 ? dimensions.first : unwrapped.first;
-        x_wrapped = x_wrapped > dimensions.first ? 1 : x_wrapped;
-        int y_wrapped = unwrapped.second < 1 ? dimensions.second : unwrapped.second;
-        y_wrapped = y_wrapped > dimensions.second ? 1 : y_wrapped;
-        return Pair.create(x_wrapped, y_wrapped);
+    public Game evolve() {
+        Map<Pair<Integer, Integer>, Boolean> nextState = new HashMap<Pair<Integer, Integer>, Boolean>();
+        for (Pair<Integer, Integer> coordinates : state.keySet()) {
+            nextState.put(coordinates, Rules.apply(neighbors(coordinates), stateAt(coordinates)));
+        }
+        this.state = Collections.unmodifiableMap(nextState);
+        return this;
     }
 
     public Integer neighbors(Pair<Integer, Integer> coordinates) {
@@ -81,13 +74,20 @@ public class Game {
         return neighbors;
     }
 
-    public Game evolve() {
-        Map<Pair<Integer, Integer>, Boolean> nextState = new HashMap<Pair<Integer, Integer>, Boolean>();
-        for (Pair<Integer, Integer> coordinates : state.keySet()) {
-            nextState.put(coordinates, Rules.apply(neighbors(coordinates), stateAt(coordinates)));
-        }
-        this.state = Collections.unmodifiableMap(nextState);
-        return this;
+    public boolean stateAt(Pair<Integer, Integer> coordinates) {
+        return state.get(wrapAroundBorders(coordinates));
+    }
+
+    private Pair<Integer, Integer> wrapAroundBorders(Pair<Integer, Integer> unwrapped) {
+        int x_wrapped = unwrapped.first < 1 ? dimensions.first : unwrapped.first;
+        x_wrapped = x_wrapped > dimensions.first ? 1 : x_wrapped;
+        int y_wrapped = unwrapped.second < 1 ? dimensions.second : unwrapped.second;
+        y_wrapped = y_wrapped > dimensions.second ? 1 : y_wrapped;
+        return Pair.create(x_wrapped, y_wrapped);
+    }
+
+    public Pair<Integer, Integer> dimensions() {
+        return dimensions;
     }
 
     @Override
