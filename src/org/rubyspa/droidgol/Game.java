@@ -10,6 +10,7 @@ public class Game {
 
     private final Pair<Integer, Integer> dimensions;
     private Map<Pair<Integer, Integer>, Boolean> state;
+    private Random random = new Random();
 
     public Game(final Integer width, final Integer height) {
         this.dimensions = Pair.create(width, height);
@@ -27,7 +28,7 @@ public class Game {
         final Integer height = dimensions.second;
         for (int row = 1; row <= height; row++) {
             for (int column = 1; column <= width; column++) {
-                randomState.put(Pair.create(column, row), new Random().nextBoolean());
+                randomState.put(Pair.create(column, row), random.nextBoolean());
             }
         }
         return randomState;
