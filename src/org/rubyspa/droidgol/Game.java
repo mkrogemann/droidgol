@@ -2,6 +2,7 @@ package org.rubyspa.droidgol;
 
 import android.util.Pair;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -31,7 +32,7 @@ public class Game {
                 randomState.put(Pair.create(column, row), random.nextBoolean());
             }
         }
-        return randomState;
+        return Collections.unmodifiableMap(randomState);
     }
 
     private Map<Pair<Integer, Integer>, Boolean> initializeState(final Map<Pair<Integer, Integer>, Boolean> state) {
@@ -48,7 +49,7 @@ public class Game {
                 }
             }
         }
-        return newState;
+        return Collections.unmodifiableMap(newState);
     }
 
     public Pair<Integer, Integer> dimensions() {
@@ -89,7 +90,7 @@ public class Game {
         for (Pair<Integer, Integer> coordinates : state.keySet()) {
             nextState.put(coordinates, Rules.apply(neighbors(coordinates), stateAt(coordinates)));
         }
-        this.state = nextState;
+        this.state = Collections.unmodifiableMap(nextState);
         return this;
     }
 }
