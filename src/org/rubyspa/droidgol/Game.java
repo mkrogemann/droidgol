@@ -54,6 +54,10 @@ public class Game {
         return dimensions;
     }
 
+    public Map<Pair<Integer, Integer>, Boolean> currentState() {
+        return state;
+    }
+
     public boolean stateAt(Pair<Integer, Integer> coordinates) {
         return state.get(wrapAroundBorders(coordinates));
     }
@@ -79,11 +83,12 @@ public class Game {
         return neighbors;
     }
 
-    public Map<Pair<Integer, Integer>, Boolean> evolve() {
+    public Game evolve() {
         Map<Pair<Integer, Integer>, Boolean> nextState = new HashMap<Pair<Integer, Integer>, Boolean>();
         for (Pair<Integer, Integer> coordinates : state.keySet()) {
             nextState.put(coordinates, Rules.apply(neighbors(coordinates), stateAt(coordinates)));
         }
-        return nextState;
+        this.state = nextState;
+        return this;
     }
 }

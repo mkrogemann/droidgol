@@ -71,7 +71,7 @@ public class GameTest extends TestCase {
         nextState.put(Pair.create(3, 3), Boolean.FALSE);
         nextState.put(Pair.create(4, 3), Boolean.TRUE);
 
-        assertEquals(nextState, game.evolve());
+        assertEquals(nextState, game.evolve().currentState());
     }
 
 }
