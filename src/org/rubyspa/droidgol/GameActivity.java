@@ -26,6 +26,37 @@ public class GameActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         initialize();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        initialize();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        gameThread.interrupt();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        gameThread.interrupt();
+    }
+
+    private void initialize() {
+        this.boardView = (TextView) findViewById(R.id.gameBoard);
+        this.boardView.setEnabled(true);
+        this.boardDimensions = computeDimensions();
+        this.game = new Game(this.boardDimensions.first, this.boardDimensions.second);
+        this.boardView.setText(String.format(
+                "\n\n\n\n\n\n                " +
+                        "\n     Game will extend over" +
+                        "\n     %d columns and" +
+                        "\n     %d rows" +
+                        "\n     (touch to start)", boardDimensions.first, boardDimensions.second));
         gameThread = new Thread() {
             @Override
             public void run() {
@@ -44,18 +75,6 @@ public class GameActivity extends Activity implements View.OnClickListener {
                 }
             }
         };
-    }
-
-    private void initialize() {
-        this.boardView = (TextView) findViewById(R.id.gameBoard);
-        this.boardDimensions = computeDimensions();
-        this.game = new Game(this.boardDimensions.first, this.boardDimensions.second);
-        this.boardView.setText(String.format(
-                "\n\n\n\n\n\n                " +
-                        "\n     Game will extend over" +
-                        "\n     %d columns and" +
-                        "\n     %d rows" +
-                        "\n     (touch to start)", boardDimensions.first, boardDimensions.second));
     }
 
     private Pair<Integer, Integer> computeDimensions() {
