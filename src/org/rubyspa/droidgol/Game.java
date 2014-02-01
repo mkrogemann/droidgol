@@ -25,8 +25,8 @@ public class Game {
         Map<Pair<Integer, Integer>, Boolean> randomState = new HashMap<Pair<Integer, Integer>, Boolean>();
         final Integer width = dimensions.first;
         final Integer height = dimensions.second;
-        for (int row = 1; row < height; row++) {
-            for (int column = 1; column < width; column++) {
+        for (int row = 1; row <= height; row++) {
+            for (int column = 1; column <= width; column++) {
                 randomState.put(Pair.create(column, row), new Random().nextBoolean());
             }
         }

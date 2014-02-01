@@ -25,6 +25,12 @@ public class GameTest extends TestCase {
         assertFalse(game.stateAt(Pair.create(4, 5)));
     }
 
+    public void testSetupGameWithRandomState() {
+        Game game = new Game(15, 12);
+
+        assertNotNull(game.stateAt(Pair.create(15, 12)));
+    }
+
     public void testNeighbors() {
         Map<Pair<Integer, Integer>, Boolean> state = new HashMap<Pair<Integer, Integer>, Boolean>();
         state.put(Pair.create(1, 1), Boolean.TRUE);
