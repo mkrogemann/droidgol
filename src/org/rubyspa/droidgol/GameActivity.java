@@ -1,6 +1,7 @@
 package org.rubyspa.droidgol;
 
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
@@ -23,6 +24,7 @@ public class GameActivity extends Activity implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         initialize();
         gameThread = new Thread() {
             @Override
