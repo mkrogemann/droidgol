@@ -10,8 +10,8 @@ import java.util.Random;
 public class Game {
 
     private final Pair<Integer, Integer> dimensions;
+    private final Random random = new Random();
     private Map<Pair<Integer, Integer>, Boolean> state;
-    private Random random = new Random();
 
     public Game(final Integer width, final Integer height) {
         this.dimensions = Pair.create(width, height);
