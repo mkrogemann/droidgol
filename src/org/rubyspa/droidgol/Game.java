@@ -87,7 +87,7 @@ public class Game {
     }
 
     public Pair<Integer, Integer> dimensions() {
-        return new Pair(dimensions.first, dimensions.second);
+        return Pair.create(dimensions.first, dimensions.second);
     }
 
     @Override
