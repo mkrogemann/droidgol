@@ -43,7 +43,7 @@ public class GameActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        initialize();    //To change body of overridden methods use File | Settings | File Templates.
+        initialize();
     }
 
     @Override
