@@ -35,6 +35,36 @@ public class GameActivity extends Activity implements View.OnClickListener {
     }
 
     @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        gameThread.interrupt();
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        initialize();    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        gameThread.interrupt();
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        initialize();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initialize();
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
         gameThread.interrupt();
@@ -47,6 +77,7 @@ public class GameActivity extends Activity implements View.OnClickListener {
     }
 
     private void initialize() {
+        gameRunning = false;
         this.boardView = (TextView) findViewById(R.id.gameBoard);
         this.boardView.setEnabled(true);
         this.boardDimensions = computeDimensions();
