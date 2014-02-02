@@ -79,11 +79,10 @@ public class Game {
     }
 
     private Pair<Integer, Integer> wrapAroundBorders(Pair<Integer, Integer> unwrapped) {
-        int x_wrapped = unwrapped.first < 1 ? dimensions.first : unwrapped.first;
-        x_wrapped = x_wrapped > dimensions.first ? 1 : x_wrapped;
-        int y_wrapped = unwrapped.second < 1 ? dimensions.second : unwrapped.second;
-        y_wrapped = y_wrapped > dimensions.second ? 1 : y_wrapped;
-        return Pair.create(x_wrapped, y_wrapped);
+        int x = unwrapped.first < 1 ? dimensions.first :unwrapped.first > dimensions.first ? 1 : unwrapped.first;
+        int y = unwrapped.second < 1 ? dimensions.second : unwrapped.second > dimensions.second ? 1 : unwrapped.second;
+
+        return Pair.create(x, y);
     }
 
     public Pair<Integer, Integer> dimensions() {
